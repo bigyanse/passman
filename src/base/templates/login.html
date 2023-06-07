@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+	{% block title %}Login{% endblock %}
+
+	{% block extracss %}
+	<!-- Custom styles for this template -->
+    <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+    {% endblock %}
+
+	{% block content %}
+	<form class="form-signin text-center" method="POST" action="">
+		{% csrf_token %}
+	    <img class="mb-4" src="https://secure.gravatar.com/avatar/915e16d20731b1f260fc55f0f994c13f?s=72" alt="" width="72" height="72">
+	    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+
+	    {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				{{ message }}
+			</div>
+        {% endfor %}	    
+	    <label for="inputEmail" class="sr-only">Username</label>
+	    <input name="username" type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+	    <label for="inputPassword" class="sr-only">Password</label>
+	    <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" style="margin-bottom: 10px;" required>
+	    <div class="checkbox mb-2">
+	        <label>
+	            <input type="checkbox" value="remember-me"> Remember me
+	        </label>
+	    </div>
+	    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+	    <p class="mt-5 mb-3 text-muted">&copy; 2020-{% now "Y' %}</p>
+	</form>
+	{% endblock %}

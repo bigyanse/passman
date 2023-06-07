@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+	{% block title %}Register{% endblock %}
+
+	{% block extracss %}
+	<!-- Custom styles for this template -->
+    <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+    {% endblock %}
+
+	{% block content %}
+
+	<form class="form-signin text-center" method="POST" action="">
+		{% csrf_token %}
+	    <img class="mb-4" src="https://secure.gravatar.com/avatar/915e16d20731b1f260fc55f0f994c13f?s=72" alt="" width="72" height="72">
+	    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+
+	    {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				{{ message }}
+			</div>
+        {% endfor %}	    
+	    <label for="inputEmail" class="sr-only">{{ form.username.label }}</label>
+	    {{ form.username }}
+	    <label for="inputEmail" class="sr-only">{{ form.email.label }}</label>
+	    {{ form.email }}
+	    <label for="inputPassword" class="sr-only">{{ form.password1.label }}</label>
+	    {{ form.password1 }}
+	    <label for="inputPassword" class="sr-only">{{ form.password2.label }}</label>
+	    {{ form.password2 }}
+	    <div class="checkbox mb-2" style="margin-top: 10px;">
+	        <label>
+	            <input type="checkbox" value="remember-me"> Remember me
+	        </label>
+	    </div>
+	    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+	    <p class="mt-5 mb-3 text-muted">&copy; 2020-{% now "Y' %}</p>
+	</form>
+
+	{% endblock %}
